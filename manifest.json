@@ -1,0 +1,15 @@
+{
+	"name": "Kitten Button",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "Replaces all images on a page with kittens.",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_title": "Kittens!"
+	},
+	"permissions": ["tabs", "http://*/*"],
+	"background": {
+		"scripts": ["background.js"]
+	},
+    "options_page": "options.html"
+}
