@@ -8,5 +8,9 @@ cat7 - "nicsuzor" on Flickr, attribution/share alike
 cat8 - "quatre mains" on Flickr, attribution
 cat9 - public domain
 cat10 - "latch.r" on Flickr, attribution/share alike
-cat11 - ibid
-cat12
+cat11 - "latch.r" on Flickr, attribution/share alike
+cat12 - "olaeinang" on Flickr, attribution/share alike
+cat13 - "quatre mains" on Flickr, attribution
+cat14 - "BigTailGuy" on Flickr, attribution
+cat15 - "BigTailGuy" on Flickr, attribution
+cat16 - "caseydavid" on Flickr, attribution
