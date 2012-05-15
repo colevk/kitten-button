@@ -1,5 +1,5 @@
 $(function(){
-	if ($("img[old-src]").length == 0) {
+	if (toggled_on) {
 		$("img").each(function(){
 			$(this).attr("old-src", $(this).attr("src"));
 			$(this).attr("src", getKittenURL($(this).width(), $(this).height()));
@@ -11,9 +11,3 @@ $(function(){
 		});
 	}
 });
-
-// color_kittens is defined in the options
-function getKittenURL(width, height) {
-	var modifier = color_kittens ? "" : "g/";
-	return "http://www.placekitten.com/" + modifier + width + "/" + height;
-}
