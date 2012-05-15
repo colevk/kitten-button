@@ -11,5 +11,9 @@
 	"background": {
 		"scripts": ["background.js"]
 	},
+    "content_scripts": [{
+        "matches": ["http://*/*"],
+        "js": ["jquery.min.js", "toggle_helper.js"]
+    }],
     "options_page": "options.html"
 }

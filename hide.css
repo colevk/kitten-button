@@ -1,0 +1,2 @@
+img { visibility: hidden; }
+img.cat { visibility: visible !important; }
