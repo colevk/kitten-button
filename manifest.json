@@ -3,7 +3,6 @@
 	"version": "1.0",
 	"manifest_version": 2,
 
-    "default_locale": "en",
 	"description": "Replaces all images on a page with kittens.",
 
 	"browser_action": {
