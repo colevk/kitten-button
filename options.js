@@ -1,4 +1,6 @@
-if (typeof localStorage["color"] == "undefined") {
+// localStorage.color chooses color/b&w for pictures
+
+if (typeof localStorage.color == "undefined") {
 	localStorage.color = false;
 }
 
