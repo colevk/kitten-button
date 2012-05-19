@@ -1,9 +1,8 @@
-if (!$("#cathider").length) {
-	$('head').append($(document.createElement("style"))
-		.attr("id", "cathider")
-		.attr("type", "text/css")
-		.text("img { visibility: hidden; } img.cat { visibility: visible !important; }"));
-}
+//var style = document.createElement("style");
+//style.setAttribute("id", "cathider");
+//style.setAttribute("type", "text/css");
+//style.innerHTML = "img { visibility: hidden !important;} img.cat { visibility: visible !important; }";
+//document.head.appendChild(style);
 
 $("img:not(.cat)").each(function() {
 	if (this.complete) {

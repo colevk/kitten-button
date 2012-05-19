@@ -1,6 +1,6 @@
-if ($("#cathider").length) {
-	$("#cathider").remove();
-}
+$("#cathider").each(function() {
+	$(this).remove();
+});
 
 $("img:not(.cat)").each(function() {
 	$(this).unbind("load");
