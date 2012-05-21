@@ -1,11 +1,108 @@
+// Class for storing locations of the cat pictures
+// faceRect is the x, y, height, width of the important part of the picture
+CatPic = function(filename, size, faceCenter) {
+	this.filename = filename;
+	this.size = size;
+	this.faceCenter = faceCenter;
+}
+
+
 var hide_images = $(document.createElement("style"))
 	.attr("id", "cathider")
 	.attr("type", "text/css")
 	.text("img { visibility: hidden; } img.cat { visibility: visible !important; }");
 var color_kittens;
 var toggled;
+var placeholder = chrome.extension.getURL("images/placeholder.png");
+var kittenPics = [
+	new CatPic("cat1.jpeg", [1024,768], [461,379]), 
+	new CatPic("cat2.jpeg", [1024,768], [556,447]),
+	new CatPic("cat3.jpeg", [1024,768], [321,447]),
+	new CatPic("cat4.jpeg", [1024,768], [597,344]),
+	new CatPic("cat5.jpeg", [1024,768], [453,466]),
+	new CatPic("cat6.jpeg", [1024,768], [397,443]),
+	new CatPic("cat7.jpeg", [1024,768], [472,413]),
+	new CatPic("cat8.jpeg", [1024,768], [538,271]),
+	new CatPic("cat9.jpeg", [1024,768], [632,395]),
+	new CatPic("cat10.jpeg", [1024,768], [560,384]),
+	new CatPic("cat11.jpeg", [1024,768], [608,455]),
+	new CatPic("cat12.jpeg", [1024,768], [617,433]),
+	new CatPic("cat13.jpeg", [1024,768], [301,305]),
+	new CatPic("cat14.jpeg", [1024,768], [436,438]),
+	new CatPic("cat15.jpeg", [1024,768], [575,446]),
+	new CatPic("cat16.jpeg", [1024,768], [411,417])
+];
+for (i in kittenPics) {
+	kittenPics[i].filename = chrome.extension.getURL("images/" + kittenPics[i].filename);
+}
 
-function getKittenURL(width, height) {
-	var modifier = color_kittens ? "" : "g/";
-	return "http://www.placekitten.com/" + modifier + width + "/" + height;
+
+// Takes a jQuery img tag object as an argument
+convert = function(img) {
+	if (img.hasClass("cat")) { return; }
+	var catImg = kittenPics[Math.floor(Math.random() * kittenPics.length)];
+	
+	if (img.attr("class")) { img.prop("hadclass", true); }
+	if (img.attr("style")) { img.prop("hadstyle", true); }
+	
+	img.addClass("cat");
+	img.attr("old-src", img.attr("src"));
+	img.attr("src", placeholder);
+	img.css("background-image", "url('" + catImg.filename + "')");
+	img.css("background-repeat", "no-repeat");
+	
+	var imgheight = img.height();
+	if (img.attr("height")) {
+		img.prop("hadheight", true);
+	} else {
+		img.attr("height", imgheight);
+	}
+	
+	var imgwidth = img.width();
+	if (img.attr("width")) {
+		img.prop("hadwidth", true);
+	} else {
+		img.attr("width", imgwidth);
+	}
+	
+	var xresize = imgwidth / catImg.size[0];
+	var yresize = imgheight / catImg.size[1];
+	if (xresize > yresize) { //vertical crop
+		img.css("background-size", "100% auto");
+		var yshift = imgheight / 2 - catImg.faceCenter[1] * xresize;
+		yshift = Math.min(0, Math.max(yshift, (catImg.faceCenter[1] - catImg.size[1]) * xresize));
+		img.css("background-position-y", parseInt(yshift) + "px");
+	} else { //horizontal crop
+		img.css("background-size", "auto 100%");
+		var xshift = imgwidth / 2 - catImg.faceCenter[0] * yresize;
+		xshift = Math.min(0, Math.max(xshift, (catImg.faceCenter[0] - catImg.size[0]) * yresize));
+		img.css("background-position-x", parseInt(xshift) + "px");
+	}
+}
+
+// Takes a jQuery img tag object as an argument
+function deconvert(img) {
+	if (!img.hasClass("cat")) { return; }
+	// revert src
+	img.attr("src", img.attr("old-src"));
+	img.removeAttr("old-src");
+	// revert class
+	if (!img.prop("hadclass")) {
+		img.removeAttr("class");
+	} else {
+		img.removeClass("cat");
+	}
+	// revert dimensions
+	if (!img.prop("hadwidth")) { img.removeAttr("width"); }
+	if (!img.prop("hadheight")) { img.removeAttr("height"); }
+	// revert style
+	if (!img.prop("hadstyle")) {
+		img.removeAttr("style");
+	} else {
+		img.css("background-image", "")
+			.css("background-repeat", "")
+			.css("background-size", "")
+			.css("background-position-x", "")
+			.css("background-position-y", "");
+	}
 }

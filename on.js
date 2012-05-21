@@ -4,16 +4,12 @@
 //style.innerHTML = "img { visibility: hidden !important;} img.cat { visibility: visible !important; }";
 //document.head.appendChild(style);
 
-$("img:not(.cat)").each(function() {
+$("img:not([old-src])").each(function() {
 	if (this.complete) {
-		$(this).attr("old-src", $(this).attr("src"));
-		$(this).attr("src", getKittenURL($(this).width(), $(this).height()));
-		$(this).addClass("cat");
+		convert($(this));
 	} else {
 		$(this).load(function() {
-			$(this).attr("old-src", $(this).attr("src"));
-			$(this).attr("src", getKittenURL($(this).width(), $(this).height()));
-			$(this).addClass("cat");
+			convert($(this));
 		});
 	}
 });

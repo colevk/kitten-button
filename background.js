@@ -25,7 +25,6 @@ chrome.tabs.onActivated.addListener(function(tab) {
 chrome.browserAction.onClicked.addListener(function(tab) {
 	toggled_on = !toggled_on;
 	if (toggled_on) {
-		chrome.tabs.insertCSS(null, {code: "img { visibility: hidden !important;} img.cat { visibility: visible !important; }"});
 		chrome.tabs.executeScript(null, {file: "on.js"});
 		chrome.browserAction.setIcon({"path": "icon2.png"});
 	} else {
