@@ -45,7 +45,6 @@ convert = function(img) {
 	if (img.attr("class")) { img.prop("hadclass", true); }
 	if (img.attr("style")) { img.prop("hadstyle", true); }
 	
-	img.addClass("cat");
 	img.attr("old-src", img.attr("src"));
 	img.attr("src", placeholder);
 	img.css("background-image", "url('" + catImg.filename + "')");
@@ -78,6 +77,7 @@ convert = function(img) {
 		xshift = Math.min(0, Math.max(xshift, (catImg.faceCenter[0] - catImg.size[0]) * yresize));
 		img.css("background-position-x", parseInt(xshift) + "px");
 	}
+	img.addClass("cat");
 }
 
 // Takes a jQuery img tag object as an argument

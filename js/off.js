@@ -1,6 +1,6 @@
-//$("#cathider").each(function() {
-//	$(this).remove();
-//});
+$("#cathider").each(function() {
+	$(this).remove();
+});
 
 $("img").each(function() {
 	$(this).unbind("load");

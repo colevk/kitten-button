@@ -11,9 +11,9 @@
 	},
 	"permissions": ["tabs", "http://*/*"],
 	"background": {
-		"scripts": ["background.js"]
+		"scripts": ["js/background.js"]
 	},
-    "options_page": "options.html",
+    "options_page": "options/options.html",
     "web_accessible_resources": [
         "images/placeholder.png",
         "images/cat1.jpeg",
