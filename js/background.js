@@ -2,8 +2,8 @@ var toggled_on = false;
 
 chrome.tabs.onUpdated.addListener(function(tab) {
 	chrome.tabs.executeScript(null, {file: "js/jquery.min.js"});
-	chrome.tabs.executeScript(null, {file: "js/toggle_helper.js"});
 	chrome.tabs.executeScript(null, {code: "color_kittens = " + localStorage.color});
+	chrome.tabs.executeScript(null, {file: "js/toggle_helper.js"});
 	if (toggled_on) {
 		chrome.tabs.executeScript(null, {file: "js/on.js"});
 	} else {
@@ -13,8 +13,8 @@ chrome.tabs.onUpdated.addListener(function(tab) {
 
 chrome.tabs.onActivated.addListener(function(tab) {
 	chrome.tabs.executeScript(null, {file: "js/jquery.min.js"});
-	chrome.tabs.executeScript(null, {file: "js/toggle_helper.js"});
 	chrome.tabs.executeScript(null, {code: "color_kittens = " + localStorage.color});
+	chrome.tabs.executeScript(null, {file: "js/toggle_helper.js"});
 	if (toggled_on) {
 		chrome.tabs.executeScript(null, {file: "js/on.js"});
 	} else {
