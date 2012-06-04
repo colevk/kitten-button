@@ -8,6 +8,7 @@ $("img:not([old-src])").each(function() {
 	if (this.complete) {
 		convert($(this));
 	} else {
+		$(this).prop("loadfunction", true);
 		$(this).load(function() {
 			convert($(this));
 		});

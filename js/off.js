@@ -3,7 +3,9 @@ $("#cathider").each(function() {
 });
 
 $("img").each(function() {
-	$(this).unbind("load");
+	if ($(this).prop("loadfunction")) {
+		$(this).unbind("load");
+	}
 });
 
 $("img[old-src]").each(function() {

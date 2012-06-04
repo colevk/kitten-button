@@ -93,9 +93,6 @@ function deconvert(img) {
 	} else {
 		img.removeClass("cat");
 	}
-	// revert dimensions
-	if (!img.prop("hadwidth")) { img.removeAttr("width"); }
-	if (!img.prop("hadheight")) { img.removeAttr("height"); }
 	// revert style
 	if (!img.prop("hadstyle")) {
 		img.removeAttr("style");
@@ -106,4 +103,7 @@ function deconvert(img) {
 			.css("background-position-x", "")
 			.css("background-position-y", "");
 	}
+	// revert dimensions
+	if (!img.prop("hadwidth")) { img.one("load", function(){ $(this).removeAttr("width"); })}
+	if (!img.prop("hadheight")) { img.one("load", function(){ $(this).removeAttr("height"); })}
 }
