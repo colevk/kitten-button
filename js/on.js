@@ -1,15 +1,8 @@
-//var style = document.createElement("style");
-//style.setAttribute("id", "cathider");
-//style.setAttribute("type", "text/css");
-//style.innerHTML = "img { visibility: hidden !important;} img.cat { visibility: visible !important; }";
-//document.head.appendChild(style);
-
 $("img:not([old-src])").each(function() {
 	if (this.complete) {
 		convert($(this));
 	} else {
-		$(this).prop("loadfunction", true);
-		$(this).load(function() {
+		$(this).one("load", function() {
 			convert($(this));
 		});
 	}
