@@ -27,20 +27,28 @@ function toggle() {
 	}
 }
 
+function hide() {
+	if (toggled_on) {
+		chrome.tabs.insertCSS(null, {code: "img { visibility: hidden !important; }"});
+	} else {
+		chrome.tabs.insertCSS(null, {code: "img { visibility: visible !important; }"});
+	}
+}
+
 chrome.tabs.onUpdated.addListener(function(tab) {
-	if(!toggled_on) { chrome.tabs.insertCSS(null, {file: "css/unhider.css"}); }
+	hide();
 	load_helper_scripts();
 	apply_toggle();
 });
 
 chrome.tabs.onActivated.addListener(function(tab) {
-	if(!toggled_on) { chrome.tabs.insertCSS(null, {file: "css/unhider.css"}); }
+	hide();
 	load_helper_scripts();
 	apply_toggle();
 });
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-	if(!toggled_on) { chrome.tabs.insertCSS(null, {file: "css/unhider.css"}); }
 	toggle();
+	hide();
 	apply_toggle();
 });

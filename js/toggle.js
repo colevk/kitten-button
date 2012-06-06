@@ -9,11 +9,6 @@ CatPic = function(filename, size, faceCenter) {
 if (typeof color_kittens == "undefined") { color_kittens = false; }
 var img_location = (color_kittens ? "color/" : "grayscale/");
 
-var hide_images = $(document.createElement("style"))
-	.attr("id", "cathider")
-	.attr("type", "text/css")
-	.text("img { visibility: hidden; } img.cat { visibility: visible !important; }");
-var toggled;
 var placeholder = chrome.extension.getURL("images/placeholder.png");
 var kittenPics = [
 	new CatPic("cat1.jpg", [1024,768], [461,379]), 
@@ -53,6 +48,7 @@ function toggle_on() {
 
 // applies "deconvert" to all cat images on the page
 function toggle_off() {
+	$(document).off("load", "img");
 	$("img[old-src]").each(function() {
 		deconvert($(this));
 	});

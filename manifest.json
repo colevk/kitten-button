@@ -9,12 +9,12 @@
 		"default_icon": "icon.png",
 		"default_title": "Kittens!"
 	},
-	"permissions": ["tabs", "http://*/*"],
+	"permissions": ["tabs", "http://*/*", "https://*/*"],
 	"background": {
 		"scripts": ["js/background.js"]
 	},
     "content_scripts": [{
-        "matches": ["http://*/*"],
+        "matches": ["http://*/*", "https://*/*"],
         "css": ["css/hider.css"]
     }],
     "options_page": "options/options.html",
