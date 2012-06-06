@@ -13,6 +13,10 @@
 	"background": {
 		"scripts": ["js/background.js"]
 	},
+    "content_scripts": [{
+        "matches": ["http://*/*"],
+        "css": ["css/hider.css"]
+    }],
     "options_page": "options/options.html",
     "web_accessible_resources": [
         "images/placeholder.png",

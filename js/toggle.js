@@ -38,8 +38,29 @@ for (i in kittenPics) {
 }
 
 
+// applies "convert" to all non-cat images on the page
+function toggle_on() {
+	$("img:not([old-src])").each(function() {
+		if (this.complete) {
+			convert($(this));
+		} else {
+			$(this).one("load", function() {
+				convert($(this));
+			});
+		}
+	});
+}
+
+// applies "deconvert" to all cat images on the page
+function toggle_off() {
+	$("img[old-src]").each(function() {
+		deconvert($(this));
+	});
+}
+
+
 // Takes a jQuery img tag object as an argument
-convert = function(img) {
+function convert(img) {
 	if (img.hasClass("cat")) { return; }
 	var catImg = kittenPics[Math.floor(Math.random() * kittenPics.length)];
 	
@@ -78,7 +99,7 @@ convert = function(img) {
 		xshift = Math.min(0, Math.max(xshift, (catImg.faceCenter[0] - catImg.size[0]) * yresize));
 		img.css("background-position-x", parseInt(xshift) + "px");
 	}
-	img.addClass("cat");
+	img.one("load", function(){ $(this).addClass("cat"); });
 }
 
 // Takes a jQuery img tag object as an argument
